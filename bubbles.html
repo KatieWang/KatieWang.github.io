@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+</head>
+<body>
+ 
+<script id="jsbin-javascript">
+var canvas = Raphael(0, 0, 500, 500);
+var addmore = "yes";
+var worries = [];
+var current = 0, i = 0, i2 = 0;
+while (addmore === "yes") { //noprotect
+  var input = prompt("Give me a worry of yours:");
+  var image = new Image;
+  image.src = "http://i.imgur.com/UbD4sbZ.png";
+  image.height = 150; 
+  image.width = 150;
+  image.style.top=80 + (150*i);
+  image.style.right=80 + (150*i2);
+  document.body.appendChild(image);
+  var maketext = canvas.text(80 + 150*i, 80 + 150*i2, input);
+  current++;
+  i++;
+  if (i === 3) {
+    i = 0;
+    i2++;
+  }
+  if (current < 9) {
+    addmore = prompt("Do you have another worry? ('yes' if so)");
+  } else {
+    addmore = "no";
+  }
+  image.click(pop);
+}
+function diamond() {
+  var x = Math.floor((Math.random() * 400) + 1);
+  var y = Math.floor((Math.random() * 400) + 1);
+  var animateCircle = Raphael.animation({cx:x, cy:y}, 1000, "bounce");
+  this.animate(animateCircle);
+}
+function pop() {
+   var image = document.getElementById('myImage');
+        image.src = "http://i.imgur.com/f8deEVF.gif";
+}
+</script>
+ 
+<script id="jsbin-source-html" type="text/html">
+
+</body>
+</html>
